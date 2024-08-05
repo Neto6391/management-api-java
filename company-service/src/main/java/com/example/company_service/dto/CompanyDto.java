@@ -13,10 +13,14 @@ public class CompanyDto {
         this.id = UUID.randomUUID();
     }
 
-    public CompanyDto(String name, String cnpj) {
-        this.id = UUID.randomUUID();
+    public CompanyDto(UUID id, String name, String cnpj) {
+        this.id = id;
         this.name = name;
         this.cnpj = cnpj;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public UUID getId() {

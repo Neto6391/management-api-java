@@ -12,11 +12,15 @@ public class PartnerDto {
         this.id = UUID.randomUUID();
     }
 
-    public PartnerDto(String name, String email, CompanyDto company) {
-        this.id = UUID.randomUUID();
+    public PartnerDto(UUID id, String name, String email, CompanyDto company) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.company = company;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public UUID getId() {
