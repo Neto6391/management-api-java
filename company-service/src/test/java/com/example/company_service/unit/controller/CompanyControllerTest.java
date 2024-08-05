@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -40,7 +41,8 @@ public class CompanyControllerTest {
     }
 
     @Test
-    public void whenCreateCompany_thenReturnCompany() {
+    @DisplayName("Should create a new company and return it")
+    public void shouldCreateCompanyAndReturnIt() {
         when(companyService.createCompany(any(CompanyDto.class))).thenReturn(companyDto);
 
         ResponseEntity<CompanyDto> response = companyController.createCompany(companyDto);
@@ -50,7 +52,8 @@ public class CompanyControllerTest {
     }
 
     @Test
-    public void whenGetCompany_thenReturnCompany() {
+    @DisplayName("Should find and return an existing company")
+    public void shouldFindAndReturnExistingCompany() {
         when(companyService.getCompany(companyId)).thenReturn(companyDto);
 
         ResponseEntity<CompanyDto> response = companyController.getCompany(companyId);
@@ -60,7 +63,8 @@ public class CompanyControllerTest {
     }
 
     @Test
-    public void whenGetAllCompanies_thenReturnCompaniesList() {
+    @DisplayName("Should return a list of all companies")
+    public void shouldReturnListOfAllCompanies() {
         List<CompanyDto> companies = List.of(companyDto);
         when(companyService.getAllCompanies()).thenReturn(companies);
 
@@ -71,7 +75,8 @@ public class CompanyControllerTest {
     }
 
     @Test
-    public void whenUpdateCompany_thenReturnUpdatedCompany() {
+    @DisplayName("Should update an existing company and return the updated version")
+    public void shouldUpdateCompanyAndReturnUpdatedVersion() {
         when(companyService.updateCompany(companyId, companyDto)).thenReturn(companyDto);
 
         ResponseEntity<CompanyDto> response = companyController.updateCompany(companyId, companyDto);
@@ -81,7 +86,8 @@ public class CompanyControllerTest {
     }
 
     @Test
-    public void whenDeleteCompany_thenVerifyDeletion() {
+    @DisplayName("Should verify that the company was deleted")
+    public void shouldVerifyCompanyDeletion() {
         doNothing().when(companyService).deleteCompany(companyId);
 
         ResponseEntity<Void> response = companyController.deleteCompany(companyId);

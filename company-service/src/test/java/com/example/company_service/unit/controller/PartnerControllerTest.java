@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -46,7 +47,8 @@ public class PartnerControllerTest {
     }
 
     @Test
-    public void whenCreatePartner_thenReturnPartner() {
+    @DisplayName("Should create a new partner and return it")
+    public void shouldCreateNewPartnerAndReturnIt() {
         when(partnerService.createPartner(any(PartnerDto.class), eq(companyId))).thenReturn(partnerDto);
 
         ResponseEntity<PartnerDto> response = partnerController.createPartner(partnerDto, companyId);
@@ -56,7 +58,8 @@ public class PartnerControllerTest {
     }
 
     @Test
-    public void whenGetPartner_thenReturnPartner() {
+    @DisplayName("Should find and return an existing partner")
+    public void shouldFindAndReturnExistingPartner() {
         when(partnerService.getPartnerById(partnerId)).thenReturn(partnerDto);
 
         ResponseEntity<PartnerDto> response = partnerController.getPartner(partnerId);
@@ -66,7 +69,8 @@ public class PartnerControllerTest {
     }
 
     @Test
-    public void whenGetAllPartners_thenReturnPartnersList() {
+    @DisplayName("Should return a list of all partners")
+    public void shouldReturnListOfAllPartners() {
         List<PartnerDto> partners = List.of(partnerDto);
         when(partnerService.getAllPartners()).thenReturn(partners);
 
@@ -77,7 +81,8 @@ public class PartnerControllerTest {
     }
 
     @Test
-    public void whenUpdatePartner_thenReturnUpdatedPartner() {
+    @DisplayName("Should update an existing partner and return the updated version")
+    public void shouldUpdateExistingPartnerAndReturnUpdatedVersion() {
         when(partnerService.updatePartner(partnerId, partnerDto)).thenReturn(partnerDto);
 
         ResponseEntity<PartnerDto> response = partnerController.updatePartner(partnerId, partnerDto);
@@ -87,7 +92,8 @@ public class PartnerControllerTest {
     }
 
     @Test
-    public void whenDeletePartner_thenVerifyDeletion() {
+    @DisplayName("Should verify partner deletion")
+    public void shouldVerifyPartnerDeletion() {
         doNothing().when(partnerService).deletePartner(partnerId);
 
         ResponseEntity<Void> response = partnerController.deletePartner(partnerId);
