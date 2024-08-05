@@ -36,7 +36,7 @@ public class Partner {
     @CreationTimestamp
     private Instant createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     private Instant updatedAt;
 
     public Partner() {
