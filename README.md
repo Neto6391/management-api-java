@@ -13,3 +13,5 @@ This project is to purpose serve management for a company, that have a CRUD of c
 
 # Run project for mode testing
 - mvn spring-boot:run -Dspring.profiles.active=test
+- Run unit tests
+- mvn  test -Dspring.profiles.active=test
