@@ -17,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.example.company_service.controller.PartnerController;
 import com.example.company_service.dto.CompanyDto;
@@ -25,6 +26,7 @@ import com.example.company_service.service.PartnerService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("test")
 public class PartnerControllerTest {
     @Mock
     private PartnerService partnerService;
@@ -43,18 +45,21 @@ public class PartnerControllerTest {
         partnerId = UUID.randomUUID();
         companyId = UUID.randomUUID();
         companyDto = new CompanyDto(companyId, "Test Company", "123123123213");
-        partnerDto = new PartnerDto(partnerId, "Test Partner", "test@example.com", companyDto);
+        partnerDto = new PartnerDto(partnerId, "Test Partner", "test@example.com",
+                companyDto);
     }
 
     @Test
     @DisplayName("Should create a new partner and return it")
     public void shouldCreateNewPartnerAndReturnIt() {
-        when(partnerService.createPartner(any(PartnerDto.class), eq(companyId))).thenReturn(partnerDto);
+        when(partnerService.createPartner(any(PartnerDto.class),
+                eq(companyId))).thenReturn(partnerDto);
 
         ResponseEntity<PartnerDto> response = partnerController.createPartner(partnerDto, companyId);
 
         assertThat(response.getBody()).isEqualTo(partnerDto);
-        verify(partnerService, times(1)).createPartner(any(PartnerDto.class), eq(companyId));
+        verify(partnerService, times(1)).createPartner(any(PartnerDto.class),
+                eq(companyId));
     }
 
     @Test
@@ -83,7 +88,8 @@ public class PartnerControllerTest {
     @Test
     @DisplayName("Should update an existing partner and return the updated version")
     public void shouldUpdateExistingPartnerAndReturnUpdatedVersion() {
-        when(partnerService.updatePartner(partnerId, partnerDto)).thenReturn(partnerDto);
+        when(partnerService.updatePartner(partnerId,
+                partnerDto)).thenReturn(partnerDto);
 
         ResponseEntity<PartnerDto> response = partnerController.updatePartner(partnerId, partnerDto);
 
