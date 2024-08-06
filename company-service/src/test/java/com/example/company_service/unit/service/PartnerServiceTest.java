@@ -61,8 +61,10 @@ public class PartnerServiceTest {
 
         company = new Company("Test Company", "123123123213");
         partner = new Partner("Test Partner", "email@example.com", company);
-        companyDto = new CompanyDto(company.getId(), company.getName(), company.getCnpj());
-        partnerDto = new PartnerDto(partner.getId(), partner.getName(), partner.getEmail(), companyDto);
+        companyDto = new CompanyDto(company.getId(), company.getName(),
+                company.getCnpj());
+        partnerDto = new PartnerDto(partner.getId(), partner.getName(),
+                partner.getEmail(), companyDto);
     }
 
     @Test
@@ -74,7 +76,8 @@ public class PartnerServiceTest {
         when(partnerRepository.save(partner)).thenReturn(partner);
         when(partnerMapper.toDto(partner)).thenReturn(partnerDto);
 
-        PartnerDto createdPartner = partnerService.createPartner(partnerDto, company.getId());
+        PartnerDto createdPartner = partnerService.createPartner(partnerDto,
+                company.getId());
 
         assertThat(createdPartner).isNotNull();
         assertThat(createdPartner.getName()).isEqualTo(partner.getName());
@@ -113,7 +116,8 @@ public class PartnerServiceTest {
         when(partnerMapper.toDto(partner)).thenReturn(partnerDto);
         partnerDto.setName("another name partner");
 
-        PartnerDto updatedPartner = partnerService.updatePartner(partner.getId(), partnerDto);
+        PartnerDto updatedPartner = partnerService.updatePartner(partner.getId(),
+                partnerDto);
         assertThat(updatedPartner).isNotNull();
         assertThat(updatedPartner.getName()).isEqualTo(partnerDto.getName());
     }

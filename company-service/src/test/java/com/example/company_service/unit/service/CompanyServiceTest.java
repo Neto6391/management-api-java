@@ -29,6 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ActiveProfiles("test")
+
 public class CompanyServiceTest {
     @Mock
     private CompanyRepository companyRepository;
@@ -45,10 +46,20 @@ public class CompanyServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
+        // companyMapper = Mappers.getMapper(CompanyMapper.class);
+
+        // companyMapper = Mappers.getMapper(CompanyMapper.class);
+        // companyService = new CompanyServiceImpl(companyRepository, companyMapper);
 
         company = new Company("Test Company", "123123123213");
         companyDto = new CompanyDto(company.getId(), company.getName(), company.getCnpj());
     }
+
+    // @AfterEach
+    // public void tearDown() {
+    // // Limpeza de recursos
+
+    // }
 
     @Test
     @DisplayName("Should create a new company")
@@ -97,6 +108,7 @@ public class CompanyServiceTest {
         companyDto.setName("another name");
 
         CompanyDto updatedCompany = companyService.updateCompany(company.getId(), companyDto);
+
         assertThat(updatedCompany).isNotNull();
         assertThat(updatedCompany.getName()).isEqualTo(companyDto.getName());
     }

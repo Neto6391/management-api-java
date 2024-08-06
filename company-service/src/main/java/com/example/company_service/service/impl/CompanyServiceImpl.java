@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.company_service.dto.CompanyDto;
 import com.example.company_service.entity.Company;
@@ -13,6 +14,7 @@ import com.example.company_service.mapper.CompanyMapper;
 import com.example.company_service.repository.CompanyRepository;
 import com.example.company_service.service.CompanyService;
 
+@Service
 public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
@@ -43,11 +45,14 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public CompanyDto updateCompany(UUID companyId, CompanyDto companyDto) {
-        Company company = companyRepository.findById(companyId)
+        Company existingCompany = companyRepository.findById(companyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Company not found"));
-        companyMapper.toEntity(companyDto);
-        company = companyRepository.save(company);
-        return companyMapper.toDto(company);
+
+        existingCompany.setName(companyDto.getName());
+        existingCompany.setCnpj(companyDto.getCnpj());
+
+        existingCompany = companyRepository.save(existingCompany);
+        return companyMapper.toDto(existingCompany);
     }
 
     @Override

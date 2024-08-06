@@ -1,13 +1,14 @@
 package com.example.company_service.dto;
 
-import java.util.List;
+import java.time.Instant;
 import java.util.UUID;
 
 public class CompanyDto {
     private UUID id;
     private String name;
     private String cnpj;
-    private List<PartnerDto> partners;
+    private Instant createdAt;
+    private Instant updatedAt;
 
     public CompanyDto() {
         this.id = UUID.randomUUID();
@@ -43,11 +44,19 @@ public class CompanyDto {
         return this.cnpj;
     }
 
-    public void setPartners(PartnerDto partner) {
-        this.partners.add(partner);
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
-    public List<PartnerDto> getPartners() {
-        return this.partners;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

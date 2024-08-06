@@ -25,7 +25,8 @@ public class PartnerController {
 
     @PostMapping("/{companyId}")
     public ResponseEntity<PartnerDto> createPartner(@RequestBody PartnerDto partnerDto, @PathVariable UUID companyId) {
-        return ResponseEntity.ok(partnerService.createPartner(partnerDto, companyId));
+        return ResponseEntity.ok(partnerService.createPartner(partnerDto,
+                companyId));
     }
 
     @GetMapping("/{partnerId}")
@@ -39,8 +40,10 @@ public class PartnerController {
     }
 
     @PutMapping("/{partnerId}")
-    public ResponseEntity<PartnerDto> updatePartner(@PathVariable UUID partnerId, @RequestBody PartnerDto partnerDto) {
-        return ResponseEntity.ok(partnerService.updatePartner(partnerId, partnerDto));
+    public ResponseEntity<PartnerDto> updatePartner(@PathVariable UUID partnerId,
+            @RequestBody PartnerDto partnerDto) {
+        return ResponseEntity.ok(partnerService.updatePartner(partnerId,
+                partnerDto));
     }
 
     @DeleteMapping("/{partnerId}")

@@ -50,6 +50,10 @@ public class Company {
         this.cnpj = cnpj;
     }
 
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public UUID getId() {
         return this.id;
     }

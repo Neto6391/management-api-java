@@ -16,14 +16,20 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.example.company_service.controller.CompanyController;
 import com.example.company_service.dto.CompanyDto;
+import com.example.company_service.mapper.CompanyMapper;
 import com.example.company_service.service.CompanyService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("test")
 public class CompanyControllerTest {
+    @Mock
+    private CompanyMapper companyMapper;
+
     @Mock
     private CompanyService companyService;
 
@@ -77,7 +83,8 @@ public class CompanyControllerTest {
     @Test
     @DisplayName("Should update an existing company and return the updated version")
     public void shouldUpdateCompanyAndReturnUpdatedVersion() {
-        when(companyService.updateCompany(companyId, companyDto)).thenReturn(companyDto);
+        when(companyService.updateCompany(companyId,
+                companyDto)).thenReturn(companyDto);
 
         ResponseEntity<CompanyDto> response = companyController.updateCompany(companyId, companyDto);
 

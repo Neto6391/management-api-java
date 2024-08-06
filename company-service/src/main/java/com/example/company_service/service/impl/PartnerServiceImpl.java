@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.company_service.dto.PartnerDto;
 import com.example.company_service.entity.Company;
@@ -15,6 +16,7 @@ import com.example.company_service.repository.CompanyRepository;
 import com.example.company_service.repository.PartnerRepository;
 import com.example.company_service.service.PartnerService;
 
+@Service
 public class PartnerServiceImpl implements PartnerService {
     @Autowired
     private CompanyRepository companyRepository;

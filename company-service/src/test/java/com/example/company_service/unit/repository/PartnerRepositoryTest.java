@@ -30,7 +30,8 @@ public class PartnerRepositoryTest {
         Company company = new Company("Test Company", "123123123213");
         company = companyRepository.save(company);
 
-        Partner partner = new Partner("Test Partner", "emailTest@example.com", company);
+        Partner partner = new Partner("Test Partner", "emailTest@example.com",
+                company);
         partner = partnerRepository.save(partner);
 
         Optional<Partner> found = partnerRepository.findById(partner.getId());
@@ -45,7 +46,8 @@ public class PartnerRepositoryTest {
         Company company = new Company("Test Company", "123123123213");
         Company savedCompaby = companyRepository.save(company);
 
-        Partner partner = new Partner("Test Partner", "emailTest@example.com", savedCompaby);
+        Partner partner = new Partner("Test Partner", "emailTest@example.com",
+                savedCompaby);
         Partner savedPartner = partnerRepository.save(partner);
 
         assertThat(savedPartner.getId()).isNotNull();
