@@ -11,11 +11,14 @@ public class CompanyDto {
     private Instant updatedAt;
 
     public CompanyDto() {
-        this.id = UUID.randomUUID();
     }
 
     public CompanyDto(UUID id, String name, String cnpj) {
-        this.id = id;
+        this.name = name;
+        this.cnpj = cnpj;
+    }
+
+    public CompanyDto(String name, String cnpj) {
         this.name = name;
         this.cnpj = cnpj;
     }
