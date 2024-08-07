@@ -15,3 +15,7 @@ This project is to purpose serve management for a company, that have a CRUD of c
 - mvn spring-boot:run -Dspring.profiles.active=test
 - Run unit tests
 - mvn  test -Dspring.profiles.active=test
+
+# Documentation of API Company Management
+http://localhost:5000/swagger-ui/index.html
+http://localhost:5000/api-docs/public
