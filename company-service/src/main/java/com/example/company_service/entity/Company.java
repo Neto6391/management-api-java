@@ -41,7 +41,6 @@ public class Company {
     private Instant updatedAt;
 
     public Company() {
-        this.id = UUID.randomUUID();
     }
 
     public Company(String name, String cnpj) {
