@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ public class CompanyController {
 
     @PostMapping
     public ResponseEntity<CompanyDto> createCompany(@RequestBody CompanyDto companyDto) {
-        return ResponseEntity.ok(companyService.createCompany(companyDto));
+        CompanyDto response = companyService.createCompany(companyDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{companyId}")
@@ -41,8 +43,9 @@ public class CompanyController {
     @PutMapping("/{companyId}")
     public ResponseEntity<CompanyDto> updateCompany(@PathVariable UUID companyId,
             @RequestBody CompanyDto companyDto) {
-        return ResponseEntity.ok(companyService.updateCompany(companyId,
-                companyDto));
+        CompanyDto response = companyService.updateCompany(companyId,
+                companyDto);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{companyId}")

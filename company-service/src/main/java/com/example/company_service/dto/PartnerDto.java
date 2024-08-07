@@ -9,11 +9,16 @@ public class PartnerDto {
     private CompanyDto company;
 
     public PartnerDto() {
-        this.id = UUID.randomUUID();
     }
 
     public PartnerDto(UUID id, String name, String email, CompanyDto company) {
         this.id = id;
+        this.name = name;
+        this.email = email;
+        this.company = company;
+    }
+
+    public PartnerDto(String name, String email, CompanyDto company) {
         this.name = name;
         this.email = email;
         this.company = company;

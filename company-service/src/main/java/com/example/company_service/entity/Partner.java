@@ -40,7 +40,6 @@ public class Partner {
     private Instant updatedAt;
 
     public Partner() {
-        this.id = UUID.randomUUID();
     }
 
     public Partner(String name, String email, Company company) {
