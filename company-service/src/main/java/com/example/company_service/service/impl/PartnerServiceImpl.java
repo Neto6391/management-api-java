@@ -54,11 +54,14 @@ public class PartnerServiceImpl implements PartnerService {
 
     @Override
     public PartnerDto updatePartner(UUID partnerId, PartnerDto partnerDto) {
-        Partner partner = partnerRepository.findById(partnerId)
+        Partner existingPartner = partnerRepository.findById(partnerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Partner not found"));
-        partnerMapper.toEntity(partnerDto);
-        partner = partnerRepository.save(partner);
-        return partnerMapper.toDto(partner);
+
+        existingPartner.setEmail(partnerDto.getEmail());
+        existingPartner.setName(partnerDto.getName());
+
+        existingPartner = partnerRepository.save(existingPartner);
+        return partnerMapper.toDto(existingPartner);
     }
 
     @Override
